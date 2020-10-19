@@ -25,20 +25,18 @@
 
 .bloco1{
 	display: block;
-	font: 50px;
+	font-size: 16px;
         font-family: Helvetica;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 10px;
 	padding: 20px;
 	color: Crimson;	
 }
 
 .bloco2{
 	display: block;
-	font: 50px;
+	font-size: 16px;
 	font-family: Helvetica;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 10px;
 	padding: 20px;
         color: Crimson;
 }
@@ -46,10 +44,9 @@
 .bloco0{
 
 	display: block;
-	font: 50px;
+	font-size: 16px;
         font-family: Helvetica;
         margin-top: 20px;
-        margin-bottom: 20px;
         padding: 20px;
 	color: Crimson;
 }
