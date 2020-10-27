@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/ceciliasoares/Documents/Universidade/4Ano/1semestre/DAW/DAW2020/TPC2/project.xsd">
+    <header>
+        <keyname>Project Record</keyname>
+        <title>XML - Aplicações e Tecnologias Associadas</title>
+        <subtitle>TPC2</subtitle>
+        <supervisor>
+            <name>José Carlos Ramalho</name>
+            <email>jcr@di.uminho.pt</email>
+            <links url="http://www.di.uminho.pt/~jcr">
+            </links>
+        </supervisor>
+        <begindate>24 de Outubro de 2020</begindate>
+        <enddate>27 de Outubro de 2020</enddate>
+    </header>
+    <workteam>
+        <worker>
+            <id>a34900</id>
+            <name>Cecília da Conceição de Oliveira Soares</name>
+            <email>cecilia.oliveira.soares@gmail.com</email>
+            <git>https://github.com/soaresCecilia</git>
+        </worker>
+    </workteam>
+    <abstract>
+        <paragraph>O presente trabalho visou a definição e criação, em <bold>XML</bold>, da estrutura de relatório 
+            a ser usada em todos os trabalhos laboratoriais da disciplina de Desenvolvimento de Aplicações Web. 
+            Para tal, utilizamos um documento em formato <italic>dtd</italic> (<underline>Document Type 
+                Definition</underline>), de modo a garantirmos que o documento <italic>xml</italic> resultante estaria 
+            bem formado, pelo menos, no que respeita às suas anotações (marcas de início e de fim de elementos, 
+            referências a entidades, etc.).
+        </paragraph>
+        <paragraph>Na elaboração do <italic>Document Type Definition</italic>, definimos como elemento raíz o elemento
+            <bold>Project</bold> e definimos os seguintes elementos: header, keyname, title, subtitle, supervisor, 
+            begindate, enddate, supervisor, workteam, worker, id, name, email, git, abstract, paragraph, bold, italic,
+            underline, links, deliverables e deliverable.</paragraph>
+        <paragraph>A partir do ficheiro <italic>dtd</italic> geramos o presente documento <italic>xml</italic> com 
+            recurso à ferramenta <bold>Oxygen XML Editor</bold></paragraph>
+    </abstract>
+    <deliverables>
+        <deliverable path="https://github.com/soaresCecilia/DAW2020/blob/main/TPC2/project.dtd"></deliverable>
+        <deliverable path="https://github.com/soaresCecilia/DAW2020/blob/main/TPC2/project.xsd"></deliverable>
+        <deliverable path="https://github.com/soaresCecilia/DAW2020/blob/main/TPC2/project.xml"></deliverable>
+    </deliverables>
+</project>

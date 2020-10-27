@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="project">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="header"/>
+        <xs:element ref="workteam"/>
+        <xs:element ref="abstract"/>
+        <xs:element minOccurs="0" ref="deliverables"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="keyname"/>
+        <xs:element ref="title"/>
+        <xs:element minOccurs="0" ref="subtitle"/>
+        <xs:element ref="supervisor"/>
+        <xs:element ref="begindate"/>
+        <xs:element ref="enddate"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="keyname" type="xs:string"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="subtitle" type="xs:string"/>
+  <xs:element name="supervisor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="email"/>
+        <xs:element ref="links"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="begindate" type="xs:string"/>
+  <xs:element name="enddate" type="xs:string"/>
+  <xs:element name="workteam">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="worker"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="worker">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+        <xs:element ref="email"/>
+        <xs:element minOccurs="0" ref="git"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="email" type="xs:string"/>
+  <xs:element name="id" type="xs:string"/>
+  <xs:element name="git" type="xs:string"/>
+  <xs:element name="abstract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="paragraph"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="paragraph">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="bold"/>
+        <xs:element ref="italic"/>
+        <xs:element ref="underline"/>
+        <xs:element ref="links"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bold">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="italic"/>
+        <xs:element ref="underline"/>
+        <xs:element ref="links"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="italic">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="bold"/>
+        <xs:element ref="underline"/>
+        <xs:element ref="links"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="underline">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="italic"/>
+        <xs:element ref="bold"/>
+        <xs:element ref="links"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="links">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.links"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.links">
+    <xs:attribute name="url" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="deliverables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="deliverable"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="deliverable">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.deliverable"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.deliverable">
+    <xs:attribute name="path" use="required"/>
+  </xs:attributeGroup>
+</xs:schema>

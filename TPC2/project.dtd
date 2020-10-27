@@ -5,18 +5,16 @@
 <!ELEMENT keyname (#PCDATA) >
 <!ELEMENT title (#PCDATA) >
 <!ELEMENT subtitle (#PCDATA) >
+<!ELEMENT supervisor (name,email,links) >
 <!ELEMENT begindate (#PCDATA) >
 <!ELEMENT enddate (#PCDATA) >
 
-<!ELEMENT supervisor (#PCDATA) >
-<!ATTLIST supervisor
-            homepage CDATA #IMPLIED>
 
 <!ELEMENT workteam (worker+) >
 <!ELEMENT worker (id,name,email,git?) >
-<!ELEMENT id (#PCDATA) >
 <!ELEMENT name (#PCDATA) >
 <!ELEMENT email (#PCDATA) >
+<!ELEMENT id (#PCDATA) >
 <!ELEMENT git (#PCDATA) >
 
 <!ELEMENT abstract (paragraph+)>
@@ -26,11 +24,10 @@
 <!ELEMENT bold (#PCDATA|italic|underline|links)* >
 <!ELEMENT italic (#PCDATA|bold|underline|links)* >
 <!ELEMENT underline (#PCDATA|italic|bold|links)* >
-
 <!ELEMENT links (#PCDATA) >
 <!ATTLIST links
             url CDATA #REQUIRED>
-            
+
 <!ELEMENT deliverables (deliverable+) >
 <!ELEMENT deliverable (#PCDATA) >
 <!ATTLIST deliverable
