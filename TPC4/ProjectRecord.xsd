@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="pr">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="meta"/>
+        <xs:element ref="team"/>
+        <xs:element ref="abstract"/>
+        <xs:element ref="deliverables"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="meta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="key"/>
+        <xs:element ref="title"/>
+        <xs:element minOccurs="0" ref="subtitle"/>
+        <xs:element ref="bdate"/>
+        <xs:element ref="edate"/>
+        <xs:element ref="supervisor"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="key" type="xs:string"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="subtitle" type="xs:string"/>
+  <xs:element name="bdate" type="xs:string"/>
+  <xs:element name="edate" type="xs:string"/>
+  <xs:element name="supervisor">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.supervisor"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.supervisor">
+    <xs:attribute name="url"/>
+  </xs:attributeGroup>
+  <xs:element name="team">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="member"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="member">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="email"/>
+        <xs:element minOccurs="0" ref="link"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.member"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="email" type="xs:string"/>
+  <xs:attributeGroup name="attlist.member">
+    <xs:attribute name="id" use="required" type="xs:ID"/>
+  </xs:attributeGroup>
+  <xs:element name="abstract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="p"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="p">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="b"/>
+        <xs:element ref="i"/>
+        <xs:element ref="u"/>
+        <xs:element ref="link"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="i">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="b"/>
+        <xs:element ref="u"/>
+        <xs:element ref="link"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="b">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="u"/>
+        <xs:element ref="i"/>
+        <xs:element ref="link"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="u">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="b"/>
+        <xs:element ref="i"/>
+        <xs:element ref="link"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ilink">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.ilink"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.ilink">
+    <xs:attribute name="ref" use="required" type="xs:IDREF"/>
+  </xs:attributeGroup>
+  <xs:element name="link">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="attlist.link"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.link">
+    <xs:attribute name="url" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="deliverables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="link"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
