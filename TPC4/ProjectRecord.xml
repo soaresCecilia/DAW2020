@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/ceciliasoares/Documents/Universidade/4Ano/1semestre/DAW/DAW2020/TPC4/ProjectRecord.xsd">
+    <meta>
+        <key>Project Record</key>
+        <title>Node Server</title>
+        <bdate>10 de Novembro</bdate>
+        <edate>10 de Novembro</edate>
+        <supervisor url="http://www.di.uminho.pt/~jcr"/>
+        
+    </meta>
+    <team>
+        <member id="a34900">
+            <name>Cecília da Conceição de Oliveira Soares</name>
+            <email>cecilia.oliveira.soares@gmail.com</email>
+            <link url="https://github.com/soaresCecilia"/>
+        </member>
+    </team>
+    <abstract>
+        <p>O presente trabalho visou a criação de várias páginas html a partir de um documento <b>xsl</b> 
+            que aplica os seus sucessivos <i>templates</i> ao <i>dataset arq.xml</i> fornecido. </p>
+        <p>Começamos por criar várias páginas html, sempre que encontramos no referido <i>dataset</i>, 
+            um novo <b>ARQELEM</b>. Cada uma das páginas html é nomeada como <i>arqX.html</i>,
+            sendo o X um número que aumenta sucessivamente.</p>
+        <p>De seguida criamos um servidor em <b>node.js</b> que verifica se a expressão introduzida no 
+           browser corresponde ao padrão <b>localhost:12346/arqs/X</b>, podendo X ser um número de 1 a 
+            122 ou a palavra index, ambas as possibilidades podem ter ou não a extensão html.</p>
+        <p>Finalmente, caso a página requerida não seja encontrada, esse erro é indicado através da nossa 
+           página html de erro, criada para o efeito.</p>            
+           
+        <p/>
+    </abstract>
+    <deliverables>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/server.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/arq.xml"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/tree/main/TPC4/arqs"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/arqSitios.xsl"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/mymod.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/ProjectRecord.dtd"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC4/ProjectRecord.xsd"/>
+        
+    </deliverables>
+</pr>
