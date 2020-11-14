@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/ceciliasoares/Documents/Universidade/4Ano/1semestre/DAW/DAW2020/TPC5/ProjectRecord.xsd">
+    <meta>
+        <key>Project Record</key>
+        <title>httpServer and Json-server Fast API</title>
+        <bdate>14 de Novembro</bdate>
+        <edate>14 de Novembro</edate>
+        <supervisor url="http://www.di.uminho.pt/~jcr"/>
+        
+    </meta>
+    <team>
+        <member id="a34900">
+            <name>Cecília da Conceição de Oliveira Soares</name>
+            <email>cecilia.oliveira.soares@gmail.com</email>
+            <link url="https://github.com/soaresCecilia"/>
+        </member>
+    </team>
+    <abstract>
+        <p>O presente trabalho destinou-se à criação de uma aplicação web que se destina a tornar o 
+        <i>dataset Escola de Música </i> todo navegável. Esta aplicação é possível através da comunicação 
+        do nosso servidor httpServer com um <i> Json-server</i>, respondendo com páginas html onde apresenta 
+        a informação obtida. </p>
+        Em primeiro lugar, criamos duas estruturas de dados, <i>hashTables</i>, que denominamos 
+        de <i>myHashInst</i> e <i>myHashCurso</i>, sendo que a primeira mapeia o id de um instrumento 
+        no seu nome, e a segunda mapeia o id do Curso na sua designação. </p>
+        Em segundo lugar, carregamos as mencionadas estruturas de dados quando o servidor é iniciado, 
+        através do método <i>myFillMap</i> que faz um <b>GET<b> da informação contida na lista dos cursos 
+        e retira os dados necessários. Estes dados permitem-nos saber qual a designação do curso que o aluno 
+        frequenta, o que nos facilita a tarefa de criação da página html do aluno, bem como fazer a correspondência 
+        entre o nome do instrumento e o seu id, visto que essa informação não é passível de ser obtida através da 
+        lista dos instrumentos.</p>
+        <p> Depois de termos criado e preenchido estas estruturas auxiliares, todo o serviço se baseia em pedidos <b>GET</b>
+        que o nosso servidor faz ao Json-server, passando-lhe o caminho absoluto da informação que pretende para construir
+        a respectiva página <i>web</i>.</p>
+        <p> Finalmente, resta mencionar que o nosso httpServer encontra-se na porta 4000 e o Json-server na porta 
+        3001.</p>          
+    </abstract>
+    <deliverables>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC5/server.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC5/db.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC5/package-lock.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/tree/main/TPC5/node_modules"/>
+
+        
+    </deliverables>
+</pr>
