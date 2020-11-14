@@ -13,7 +13,18 @@ myFillMap = function () {
         cursos = resp.data;
         cursos.forEach(a => {
             var inst = a.designacao.split(" ");
-            var instrum = inst[inst.length-1]
+            var instrum;
+            //o instrumento corne inglês tem duas palavras
+            if(inst[inst.length-1].match(/Inglês/)) {
+                instrum = inst[inst.length-2] + " " + inst[inst.length-1]
+
+            }
+            //viola de arco tem três palavras
+            else if (inst[inst.length-1].match(/Arco/) ){
+                instrum = inst[inst.length-3] + " " + inst[inst.length-2] + " " + inst[inst.length-1]
+
+            }
+            else instrum = inst[inst.length-1]
             myMapInst.set(a.instrumento.id, instrum)
             myMapCurso.set(a.id, a.designacao)
             console.log("O que está no myMapInst: " + myMapInst.get(a.instrumento.id))
@@ -164,22 +175,8 @@ http.createServer(function (req, res) {
                     res.write("<li> <p style='color:green'> Número Identificativo do Curso: " + a.id + '</p></li>')
                     res.write("<li> <p style='color:green'> Designação : " + a.designacao + '</p></li>')
 
-                    var inst = a.designacao.split(" ");
-                    
-                    //o instrumento corne inglês tem duas palavras
-                    if(inst[inst.length-1].match(/Inglês/)) {
-                        var instrum = inst[inst.length-2] + " " + inst[inst.length-1]
-
-                    }
-                    //viola de arco tem três palavras
-                    else if (inst[inst.length-1].match(/Arco/) ){
-                        var instrum = inst[inst.length-3] + " " + inst[inst.length-2] + " " + inst[inst.length-1]
-
-                    }
-                    else var instrum = inst[inst.length-1]
-        
                     res.write("<li> <p style='color:green'> Duração: " + a.duracao + '</p></li>')
-                    res.write("<li> <p style='color:green'> Instrumento: " + instrum + '</p></li>')
+                    res.write("<li> <p style='color:green'> Instrumento: " + myMapInst.get(a.instrumento.id) + '</p></li>')
                 });
 
                 res.write('</ul>')
@@ -187,7 +184,7 @@ http.createServer(function (req, res) {
                 res.end()
             })
             .catch(function (error)  {
-                console.log('Erro na obtenção da lista de cursos: ' + error);
+                console.log('Erro na obtenção do curso: ' + error);
             });
         }
 
@@ -202,7 +199,7 @@ http.createServer(function (req, res) {
                 res.write('<ul>')
             
                 inst.forEach(a => {
-                    res.write("<li><p style='color:blue'>" + a.id + ' - ' + myMapInst.get(a.id) + "</p></li>")
+                    res.write("<li><p><a href= '/"+ a.id + "' style='color:blue';>" + a.id + " - " +  myMapInst.get(a.id) + "</p></li>")
                 });
 
                 res.write('</ul>')
@@ -212,6 +209,37 @@ http.createServer(function (req, res) {
             .catch(function (error)  {
                 console.log('Erro na obtenção da lista de instrumentos: ' + error);
             }); 
+        }
+
+        //página de cada instrumento consoante o seu id
+        else if (req.url.match(/\/I[0-9]+$/)){
+
+            var num = req.url.split("/");
+
+            var idInst = num[num.length-1]
+
+            console.log("Estou aqui e o id do Curso é : " + idInst)
+
+           
+            axios.get('http://localhost:3001/instrumentos?id='+ idInst)
+            .then(function (resp) {
+                aluno = resp.data;
+                res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                res.write("<h2  style='color:pink;text-align:center';>Informação relativa ao " + myMapInst.get(idInst) + '</h2>')
+                res.write('<ul>')
+            
+                aluno.forEach(a => {
+                    res.write("<li> <p style='color:green'> Número Identificativo do Instrumento: " + a.id + '</p></li>')
+                    res.write("<li> <p style='color:green'> Designação : " + myMapInst.get(a.id) + '</p></li>')
+                });
+
+                res.write('</ul>')
+                res.write('<address>[<a href="/instrumentos">Voltar à lista de instrumentos</a>]</address>')
+                res.end()
+            })
+            .catch(function (error)  {
+                console.log('Erro na obtenção do instrumento: ' + myMapInst.get(idInst) + error);
+            });
         }
 
 
