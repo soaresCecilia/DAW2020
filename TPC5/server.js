@@ -72,7 +72,7 @@ http.createServer(function (req, res) {
                 res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
                 res.write("<h2 style='color:pink;text-align:center';>Escola de Música: Lista de Alunos</h2>")
                 res.write('<ul>')
-            
+
                 alunos.forEach(a =>{
                     res.write("<li><p><a href= '/"+ a.id + "' style='color:brown';>" + a.id + " - " + a.nome + "</p></li>")
                 });
@@ -108,14 +108,18 @@ http.createServer(function (req, res) {
                 res.write('<ul>')
             
                 aluno.forEach(a => {
-                    res.write("<li> <p style='color:green'> Número Identificativo do Aluno: " + a.id + '</p></li>')
-                    res.write("<li> <p style='color:green'> Nome do Aluno: " + a.nome + '</p></li>')
-                    res.write("<li> <p style='color:green'> Data de Nascimento: " + a.dataNasc + '</p></li>')
-                    res.write("<li> <p style='color:green'> Curso: " + myMapCurso.get(a.curso) + '</p></li>')
-                    res.write("<li> <p style='color:green'> Ano lectivo: " + a.anoCurso + '</p></li>')
-                    res.write("<li> <p style='color:green'> Instrumento que toca: " + a.instrumento + '</p></li>')
-
-
+                        res.write("<li> <p style='color:green'> Número Identificativo do Aluno: " + a.id + '</p></li>')
+                        res.write("<li> <p style='color:green'> Nome do Aluno: " + a.nome + '</p></li>')
+                        res.write("<li> <p style='color:green'> Data de Nascimento: " + a.dataNasc + '</p></li>')
+                        
+                        //porque há ids de cursos que não constam da lista de cursos e, por isso, também não constam da hashTable
+                        var curso = myMapCurso.get(a.curso);
+                        if( curso == null) {
+                            var curso = "O id do curso que este aluno frequenta, " + a.curso + ", não consta na lista de cursos";
+                        }
+                        res.write("<li> <p style='color:green'> Curso: " + curso + '</p></li>')
+                        res.write("<li> <p style='color:green'> Ano lectivo: " + a.anoCurso + '</p></li>')
+                        res.write("<li> <p style='color:green'> Instrumento que toca: " + a.instrumento + '</p></li>')
                 });
 
                 res.write('</ul>')
@@ -168,7 +172,7 @@ http.createServer(function (req, res) {
             .then(function (resp) {
                 aluno = resp.data;
                 res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                res.write("<h2  style='color:pink;text-align:center';>Informação relativa ao Curso número " + idCurso + '</h2>')
+                res.write("<h2  style='color:pink;text-align:center';>Informação relativa ao " + myMapCurso.get(idCurso) + '</h2>')
                 res.write('<ul>')
             
                 aluno.forEach(a => {
@@ -263,3 +267,5 @@ http.createServer(function (req, res) {
 }).listen(4000)
 
 console.log('Servidor à  escuta na porta 4000...')
+
+
