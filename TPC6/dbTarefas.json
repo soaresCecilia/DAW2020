@@ -1,31 +1,30 @@
 {
   "tarefas": [
     {
-      "description": "Consulta Dentista",
+      "descricao": "undefined",
       "id": "T1",
-      "dateCreation": "20 de Setembro de 2020",
-      "dateDue": "22 de Janeiro de 2021",
-      "tipoTarefa": "casa",
+      "criacao": "undefined",
+      "prazo": "undefined",
+      "tipoTarefa": "Pessoal",
       "who": "Cecilia",
-      "done": "No"
+      "done": "undefined"
     },
     {
-      "description": "aaaa",
+      "descricao": "viva",
       "id": "T2",
-      "dateCreation": "22c ",
-      "dateDue": "",
-      "tipoTarefa": "",
-      "who": "",
-      "done": "No"
+      "criacao": "undefined",
+      "prazo": "undefined",
+      "tipoTarefa": "Pessoal",
+      "who": "cecilia"
     },
     {
-      "description": "ola",
+      "descricao": "ola",
       "id": "T45",
-      "dateCreation": "22 de outubro",
-      "dateDue": "25 de janeiro",
-      "tipoTarefa": "ol",
+      "criacao": "22 de outubro",
+      "prazo": "25 de janeiro",
+      "tipoTarefa": "Pessoal",
       "who": "",
-      "done": "No"
+      "done": "Yes"
     },
     {
       "description": "ola",
@@ -34,25 +33,25 @@
       "dateDue": "25 de janeiro 2021",
       "tipoTarefa": "Pessoal",
       "who": "cecilia",
-      "done": "No"
+      "done": "Yes"
     },
     {
-      "description": "ola",
+      "descricao": "ola",
       "id": "T5",
-      "dateCreation": "22 de outubro 2020",
-      "dateDue": "25 de janeiro 2021",
+      "criacao": "22 de outubro 2020",
+      "prazo": "25 de janeiro 2021",
       "tipoTarefa": "Pessoal",
       "who": "cecilia",
-      "done": "No"
+      "done": "Yes"
     },
     {
       "description": "a",
       "id": "T6",
       "dateCreation": "22 de outubro 2020",
       "dateDue": "25 de janeiro 2021",
-      "tipoTarefa": "Escolar",
+      "tipoTarefa": "Pessoal",
       "who": "cecilia",
-      "done": "No"
+      "done": "Yes"
     },
     {
       "description": "ola",

@@ -47,7 +47,7 @@ function geraPostConfirm( tarefa, d){
             </header>
 
             <div class="w3-container">
-                <p><a href="/tarefas/${tarefa.id}">Aceda aqui à sua página."</a></p>
+                <p><a href="/tarefas/${tarefa.id}">Aceda aqui à página da tarefa criada."</a></p>
             </div>
 
             <footer class="w3-container w3-teal">
@@ -173,11 +173,12 @@ function geraPagPrincipal( tarefas, d){
 
             <table class="w3-table w3-bordered">
                 <tr>
-                <th>Descrição</th>
-                <th>Data de Criação</th>
-                <th>Prazo de Realização</th>
-                <th>Tipo de Tarefa</th>
-                <th>Responsável</th>
+                    <th>ID da Tarefa</th>
+                    <th>Descrição</th>
+                    <th>Data de Criação</th>
+                    <th>Prazo de Realização</th>
+                    <th>Tipo de Tarefa</th>
+                    <th>Responsável</th>
                 </tr>
 `
 
@@ -186,8 +187,8 @@ function geraPagPrincipal( tarefas, d){
             if((/Yes/).test(t.done)) {  
                 pagHTML +=  `
                 <tr>
-                <td><a href="/tarefas/${t.id}">${t.description}</a> </td>
-                <td>${t.id}</td>
+                <td><a href="/tarefas/${t.id}">${t.id}</a> </td>
+                <td>${t.description}</td>
                 <td>${t.dateCreation}</td>
                 <td>${t.dateDue}</td>
                 <td>${t.tipoTarefa}</td>
@@ -211,7 +212,7 @@ function geraPagPrincipal( tarefas, d){
 return pagHTML
 }
 
-// Template para a página de tarefa -------------------------------------
+// Template para a página de tarefa quando estamos-------------------------------------
 function geraPagTarefa( tarefa, d ){
         var x;
     if(/No/.test(tarefa.done)) {
@@ -235,6 +236,7 @@ function geraPagTarefa( tarefa, d ){
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4" style="width:50%">
                     <li><b>Descrição: </b> ${tarefa.description}</li>
+                    <li><b>Descrição: </b> ${tarefa.id}</li>
                     <li><b>Data de Criação: </b> ${tarefa.dateCreation}</li>
                     <li><b>Prazo: </b> ${tarefa.dateDue}</li>
                     <li><b>Tipo de Tarefa: </b> ${tarefa.tipoTarefa}</li>
@@ -242,6 +244,11 @@ function geraPagTarefa( tarefa, d ){
                     <li><b>Estado da Tarefa: </b> ${x} </li>
                 </ul>
             </div>
+
+            </form>
+            <form class="w3-container" action="/tarefas/${tarefa.id}/edit" method="POST">
+            <input class="w3-btn w3-blue-grey" type="submit" value="Editar Tarefa"/>
+            </form>
 
             <footer class="w3-container w3-teal">
                 <address>Gerado em ${d} - [<a href="/">Voltar</a>]</address>
@@ -283,16 +290,35 @@ function geraFormTarefa( d ){
                 <input class="w3-input w3-border w3-light-grey" type="text" name="dateDue">
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="tipoTarefa">
+                  </br>
+                  <select class="w3-text-teal" name="tipoTarefa">
+                  <option >Pessoal</option>
+                  <option>Doméstica</option>
+                  <option>Escolar</option>
+                  <option>Profissional</option>
+                  </select>
+  
+                  </br>
 
 
                 <label class="w3-text-teal"><b>Responsável</b></label>
                 <input class="w3-input w3-border w3-light-grey" type="text" name="who">
 
+
+                <label class="w3-text-teal"><b>Estado da Tarefa</b></label>
+                  <br/>
+                  <label  class="w3-text-blue" for="done">Realizada</label>
+                  <input type="radio" name="done" value="Yes">
+                  <br/>
+                  <label class="w3-text-blue" for="done">Por realizar</label>
+                  <input type="radio" name="done" value="No">
+                  <br/>
+                  <br/>
+
           
                 <input class="w3-btn w3-blue-grey" type="submit" value="Registar"/>
                 <input class="w3-btn w3-blue-grey" type="reset" value="Limpar valores"/> 
-            </form>
+                
 
             <footer class="w3-container w3-teal">
                 <address>Gerado em ${d}</address>
@@ -303,12 +329,12 @@ function geraFormTarefa( d ){
 }
 
 
-// Template para o formulário de tarefa ------------------
-function geraForm2(t,d){
+// Template para o formulário de ALTERAÇÃO da Tarefa ------------------
+function formEditar(t,d){
     return `
     <html>
         <head>
-            <title>Editar uma tarefa: ${t.id}</title>
+            <title>Editar Tarefa: ${t.id}</title>
             <meta charset="utf-8"/>
             <link rel="icon" href="favicon.png"/>
             <link rel="stylesheet" href="../w3.css"/>
@@ -320,31 +346,42 @@ function geraForm2(t,d){
                 <h2>Editar Tarefa: ${t.id}</h2>
             </div>
 
-            <form class="w3-container" action="/tarefas/edit" method="PUT">
+            <form class="w3-container" action="/tarefas/edit" method="POST">
                 <label class="w3-text-teal"><b>Descrição</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="descricao" value="${t.description}">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="description" value="${t.description}">
           
                 <label class="w3-text-teal"><b>Numero / Identificador</b></label>
                 <input class="w3-input w3-border w3-light-grey" type="text" name="id" value="${t.id}">
 
                 <label class="w3-text-teal"><b>Date de Criação</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="criacao" value="${t.dateCreation}">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="dateCreation" value="${t.dateCreation}">
 
                 <label class="w3-text-teal"><b>Prazo de Realização</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="prazo" value="${t.dateDue}">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="dateDue" value="${t.dateDue}">
 
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="tipoTarefa" value="${t.tipoTarefa}">
+                  </br>
+                  <select class="w3-text-teal" name="tipoTarefa" value="${t.tipoTarefa}">
+                  <option >Pessoal</option>
+                  <option>Doméstica</option>
+                  <option>Escolar</option>
+                  <option>Profissional</option>
+                  </select>
+  
+                  </br>
 
                 <label class="w3-text-teal"><b>Responsável</b></label>
                 <input class="w3-input w3-border w3-light-grey" type="text" name="who" value="${t.who}">
 
                 <label class="w3-text-teal"><b>Estado da Tarefa</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="radio" name="done" value="Yes">
-                <input class="w3-input w3-border w3-light-grey" type="radio" name="done" value="No">
-
-
+                <br/>
+                <label  class="w3-text-blue" for="done">Realizada</label>
+                <input  type="radio" name="done" value="Yes">
+                <br/>
+                  <label  class="w3-text-blue" for="done">Não Realizada</label>
+                <input  type="radio" name="done" value="No">
+                <br/>
           
                 <input class="w3-btn w3-blue-grey" type="submit" value="Registar"/>
                 <input class="w3-btn w3-blue-grey" type="reset" value="Limpar valores"/> 
@@ -387,7 +424,7 @@ var tarefaServer = http.createServer(function (req, res) {
                         res.end()
                     })
             }
-            // GET /tarefas/id -----(só podem ser casa, emprego ou escola)---------------------------------------------------------------
+            // GET /tarefas/id -----(id começa por T)---------------------------------------------------------------
             else if(/\/tarefas\/T[0-9]+$/.test(req.url)){
                 var id = req.url.split("/")[2]
                 console.log("O que está no tipo é " + id)
@@ -418,12 +455,15 @@ var tarefaServer = http.createServer(function (req, res) {
         // GET /tarefas/:id/edit --------------------------------------------------------------------
         else if(/\/tarefas\/T[0-9]+\/edit$/.test(req.url)){
              var idTarefa = req.url.split("/")[2]
+             console.log("Id da Tarefa = " + idTarefa)
              axios.get("http://localhost:3000/tarefas/" + idTarefa)
                 .then( response => {
+                    console.log("Response = " + response.data)
                  let a = response.data
-                
+
+                 console.log("Variavel a" + a)
                 res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                res.write(geraForm2(a,d))
+                res.write(formEditar(a,d))
                 res.end()
 
             })
@@ -436,47 +476,68 @@ var tarefaServer = http.createServer(function (req, res) {
            
             else{
                 res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                res.write("<p>" + req.method + " " + req.url + " NÃo suportado neste serviço.</p>")
+                res.write("<p>" + req.method + " " + req.url + " Não conseguiu fazer a edição de uma tarefa.</p>")
                 res.end()
             }
             break
             
         case "POST":
-                if(req.url=='/tarefas') {
-            recuperaInfo(req, resultado => {
-                console.log('POST de tarefa:' + JSON.stringify(resultado))
-                axios.post('http://localhost:3000/tarefas', resultado)
-                    .then(resp => {
-                        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write(geraPostConfirm( resp.data, d))
-                        res.end()
+            if(req.url=='/tarefas') {
+                    recuperaInfo(req, resultado => {
+                    console.log('POST de tarefa:' + JSON.stringify(resultado))
+                    axios.post('http://localhost:3000/tarefas', resultado)
+                        .then(resp => {
+                            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                            res.write(geraPostConfirm( resp.data, d))
+                            res.end()
+                        })
+                        .catch(erro => {
+                            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                            res.write('<p>Erro no POST: ' + erro + '</p>')
+                            res.write('<p><a href="/">Voltar</a></p>')
+                            res.end()
+                        })
                     })
-                    .catch(erro => {
-                        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write('<p>Erro no POST: ' + erro + '</p>')
-                        res.write('<p><a href="/">Voltar</a></p>')
-                        res.end()
-                    })
-            })
-        }
-        else if(req.url=='/tarefas/edit'){
-            recuperaInfo(req, resultado => {
-                console.log('PUT de tarefa:' + JSON.stringify(resultado))
-                axios.put('http://localhost:3000/tarefas/' + resultado.id, resultado)
-                    .then(resp => {
-                        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write(geraPostConfirm( resp.data, d))
-                        res.end()
-                    })
-                    .catch(erro => {
-                        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write('<p>Erro no PUT: ' + erro + '</p>')
-                        res.write('<p><a href="/">Voltar</a></p>')
-                        res.end()
-                    })
-            }) 
-        }
+            }
+            else if(/\/tarefas\/T[0-9]+\/edit$/.test(req.url)) {
+                var idTarefa = req.url.split("/")[2]
+                console.log("Id da Tarefa = " + idTarefa)
+                axios.get("http://localhost:3000/tarefas/" + idTarefa)
+                   .then( response => {
+                        console.log("Response = " + response.data)
+                        let a = response.data
+   
+                   res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                   res.write(formEditar(a,d))
+                   res.end()
+   
+               })
+               .catch(function(erro){
+                   res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                   res.write("<p>Não foi possivel obter o registo das tarefas...")
+                   res.end()
+               })
+           }
+            else if('/tarefas/edit'){
+                recuperaInfo(req, resultado => {
+                    console.log('PUT de tarefa:' + JSON.stringify(resultado))
+                    axios.put('http://localhost:3000/tarefas/' + resultado.id, resultado)
+                        .then(resp => {
+                            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                            res.write(geraPostConfirm( resp.data, d))
+                            res.end()
+                        })
+                        .catch(erro => {
+                            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                            res.write('<p>Erro no PUT: ' + erro + '</p>')
+                            res.write('<p><a href="/">Voltar</a></p>')
+                            res.end()
+                        })
+                }) 
+            }
+
         break
+
         default: 
             res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
             res.write("<p>" + req.method + " não suportado neste serviço.</p>")
