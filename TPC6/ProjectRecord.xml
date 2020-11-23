@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/ceciliasoares/Documents/Universidade/4Ano/1semestre/DAW/DAW2020/TPC6/ProjectRecord.xsd">
+    <meta>
+        <key>Project Record</key>
+        <title>Gestor de Tarefas</title>
+        <bdate>23 de Novembro</bdate>
+        <edate>23 de Novembro</edate>
+        <supervisor url="http://www.di.uminho.pt/~jcr"/>
+        
+    </meta>
+    <team>
+        <member id="a34900">
+            <name>Cecília da Conceição de Oliveira Soares</name>
+            <email>cecilia.oliveira.soares@gmail.com</email>
+            <link url="https://github.com/soaresCecilia"/>
+        </member>
+    </team>
+    <abstract>
+        <p>Com o presente trabalho criamos uma <i>Single PAge Application</i> <b>SPA</b> para uma lista de tarefas,  
+        utilizando Node.js, que permitisse inserir, editar e remover tarefas, bem como marcá-las como realizadas 
+        ou por realizar. </p>
+        <p> Para efectuarmos este trabalho tivemos de estudar os <i>HTML forms</i>, os seus atributos, <i>labels</i> e 
+        <i>controls</i> de modo a que as informações inseridas pelo utilizador nos respectivos formulários da aplicação
+        fossem devidamente processadas.</p>
+        <p>Ademais, a nossa página principal permite que o utilizador insira uma tarefa e que o mesmo visualize duas listas
+        de tarefas agrupadas pelo seu estado (Realizadas e Não Realizadas), ordenadas pela sua descrição,
+        e sempre que é criada uma nova tarefa é obrigatória a inserção do id e do estado da mesma.</p> 
+        <p> Finalmente, na edição da tarefa não é possível alterar o id da mesma.</p>          
+    </abstract>
+    <deliverables>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC6/tpc6.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC6/static.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC6/package-lock.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC6/dbTarefas.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC6/package.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/tree/main/TPC6/node_modules"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/tree/main/TPC6/public"/>
+    </deliverables>
+</pr>
