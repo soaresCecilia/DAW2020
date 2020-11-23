@@ -89,7 +89,7 @@ function geraPagPrincipal( tarefas, d){
                 <input class="w3-input w3-border w3-light-grey" type="text" name="description">
           
                 <label class="w3-text-teal"><b>Numero / Identificador</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="id">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="id" required>
 
                 <label class="w3-text-teal"><b>Data de Criação</b></label>
                 <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation">
@@ -118,7 +118,7 @@ function geraPagPrincipal( tarefas, d){
                   <input type="radio" name="done" value="Yes">
                   <br/>
                   <label class="w3-text-blue" for="done">Por realizar</label>
-                  <input type="radio" name="done" value="No">
+                  <input type="radio" name="done" value="No" required>
                   <br/>
                   <br/>
 
@@ -436,7 +436,7 @@ var tarefaServer = http.createServer(function (req, res) {
         case "GET": 
             // GET /tarefas --------------------------------------------------------------------
             if((req.url == "/") || (req.url == "/tarefas")){
-                axios.get("http://localhost:3000/tarefas")
+                axios.get("http://localhost:3000/tarefas?_sort=description")
                     .then(response => {
                         var tarefas = response.data
                         res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
