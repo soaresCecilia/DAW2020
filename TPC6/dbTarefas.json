@@ -16,60 +16,6 @@
       "prazo": "undefined",
       "tipoTarefa": "Pessoal",
       "who": "cecilia"
-    },
-    {
-      "descricao": "ola",
-      "id": "T45",
-      "criacao": "22 de outubro",
-      "prazo": "25 de janeiro",
-      "tipoTarefa": "Pessoal",
-      "who": "",
-      "done": "Yes"
-    },
-    {
-      "description": "ola",
-      "id": "T3",
-      "dateCreation": "22 de outubro 2020",
-      "dateDue": "25 de janeiro 2021",
-      "tipoTarefa": "Pessoal",
-      "who": "cecilia",
-      "done": "Yes"
-    },
-    {
-      "descricao": "ola",
-      "id": "T5",
-      "criacao": "22 de outubro 2020",
-      "prazo": "25 de janeiro 2021",
-      "tipoTarefa": "Pessoal",
-      "who": "cecilia",
-      "done": "Yes"
-    },
-    {
-      "description": "a",
-      "id": "T6",
-      "dateCreation": "22 de outubro 2020",
-      "dateDue": "25 de janeiro 2021",
-      "tipoTarefa": "Pessoal",
-      "who": "cecilia",
-      "done": "Yes"
-    },
-    {
-      "description": "ola",
-      "id": "T30",
-      "dateCreation": "22 de outubro 2020",
-      "dateDue": "25 de janeiro 2021",
-      "tipoTarefa": "Pessoal",
-      "who": "cecilia",
-      "done": "No"
-    },
-    {
-      "description": "ola",
-      "id": "T56",
-      "dateCreation": "22 de outubro",
-      "dateDue": "25 de janeiro 2021",
-      "tipoTarefa": "Pessoal",
-      "who": "",
-      "done": "Yes"
     }
   ]
 }
