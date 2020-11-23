@@ -141,50 +141,74 @@ function geraPagPrincipal( tarefas, d){
                     <th>Responsável</th>
                 </tr>
   `
- 
-    tarefas.forEach(t => {
-            pagHTML +=  `
-            <tr>
-            <td><a href="/tarefas/${t.id}">${t.id}</a> </td>
-            <td>${t.description}</td>
-            <td>${t.dateCreation}</td>
-            <td>${t.dateDue}</td>
-            <td>${t.tipoTarefa}</td>
-            <td>${t.who}</td>
-            </tr>
-            `
-    });
+    
+        tarefas.forEach(t => {
+            console.log("O que tenho no t.done é " + t.done)
+            var y;
+            if(y = (/No/.test(t.done))) {
+                console.log("O que tenho no y é " + y)
 
+                pagHTML +=  `
+                <tr>
+                <td><a href="/tarefas/${t.id}">${t.id}</a> </td>
+                <td>${t.description}</td>
+                <td>${t.dateCreation}</td>
+                <td>${t.dateDue}</td>
+                <td>${t.tipoTarefa}</td>
+                <td>${t.who}</td>
+                </tr>
+                `
+            }
+        });
 
-  pagHTML += `
-    </table>
+    pagHTML += `
+  
+            </table>
 
-
-
-
-    <hr>
-
-            <div class="w3-container w3-green">
+            <hr>
+            <div class="w3-container w3-teal">
             <h4>Tarefas Realizadas</h4>
             </div>
+
+
             <table class="w3-table w3-bordered">
                 <tr>
-                    <th>ID da Tarefa</th>
-                    <th>Descrição</th>
-                    <th>Data de Criação</th>
-                    <th>Prazo de Realização</th>
-                    <th>Tipo de Tarefa</th>
-                    <th>Responsável</th>
+                <th>Descrição</th>
+                <th>Data de Criação</th>
+                <th>Prazo de Realização</th>
+                <th>Tipo de Tarefa</th>
+                <th>Responsável</th>
                 </tr>
+`
 
+        tarefas.forEach(t => {
+            console.log("O que tenho no t.done é " + t.done)
+            if((/Yes/).test(t.done)) {  
+                pagHTML +=  `
+                <tr>
+                <td><a href="/tarefas/${t.id}">${t.description}</a> </td>
+                <td>${t.id}</td>
+                <td>${t.dateCreation}</td>
+                <td>${t.dateDue}</td>
+                <td>${t.tipoTarefa}</td>
+                <td>${t.who}</td>
+                </tr>
+                `
+            }
+        });
+
+
+    pagHTML += `
+
+        </table>
 
         <div class="w3-container w3-purple">
-            <address>Gerado em ${d} --------------</address>
+        <address>Gerado em ${d} --------------</address>
         </div>
     </body>
-    </html>
-  `
-  return pagHTML
+</html>
+`
+return pagHTML
 }
 
 // Template para a página de tarefa -------------------------------------
