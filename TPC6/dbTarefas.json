@@ -1,21 +1,3 @@
 {
-  "tarefas": [
-    {
-      "descricao": "undefined",
-      "id": "T1",
-      "criacao": "undefined",
-      "prazo": "undefined",
-      "tipoTarefa": "Pessoal",
-      "who": "Cecilia",
-      "done": "undefined"
-    },
-    {
-      "descricao": "viva",
-      "id": "T2",
-      "criacao": "undefined",
-      "prazo": "undefined",
-      "tipoTarefa": "Pessoal",
-      "who": "cecilia"
-    }
-  ]
+  "tarefas": []
 }

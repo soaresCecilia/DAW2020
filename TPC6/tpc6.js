@@ -42,16 +42,18 @@ function geraPostConfirm( tarefa, d){
     </head>
     <body>
         <div class="w3-card-4">
-            <header class="w3-container w3-teal">
-                <h1>Tarefa ${tarefa.id} inserida</h1>
+            <header class="w3-container w3-orange w3-center">
+                <h1 class="w3-text-blue">Tarefa ${tarefa.description} devidamente inserida</h1>
             </header>
 
-            <div class="w3-container">
-                <p><a href="/tarefas/${tarefa.id}">Aceda aqui à página da tarefa criada."</a></p>
+            <div class="w3-container w3-grey">
+                <br/>
+                <h4><a w3-opacity class="w3-text-pink" href="/tarefas/${tarefa.id}">Aceda aqui à página da tarefa criada.</a></h4>
+                <br/>
             </div>
 
-            <footer class="w3-container w3-teal">
-                <address>Gerado em ${d} - [<a href="/">Voltar</a>]</address>
+            <footer class="w3-container w3-orange">
+                <address class="w3-text-blue">Gerado em ${d} - [<a href="/">Voltar</a>]</address>
             </footer>
         </div>
     </body>
@@ -90,10 +92,10 @@ function geraPagPrincipal( tarefas, d){
                 <input class="w3-input w3-border w3-light-grey" type="text" name="id">
 
                 <label class="w3-text-teal"><b>Data de Criação</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateCreation">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation">
 
                 <label class="w3-text-teal"><b>Prazo de Realização</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateDue">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateDue">
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
                   </br>
@@ -200,7 +202,6 @@ function geraPagPrincipal( tarefas, d){
     pagHTML += `
 
         </table>
-
         <br/>
         <div class="w3-container w3-purple">
         <address>Gerado em ${d} --------------</address>
@@ -229,11 +230,11 @@ function geraPagTarefa( tarefa, d ){
     <body>
         <div class="w3-card-4">
             <header class="w3-container w3-teal">
-                <h1>Tarefa ${tarefa.description}</h1>
+                <h1 class="w3-text-pale-red w3-center">Tarefa ${tarefa.description}</h1>
             </header>
 
             <div class="w3-container">
-                <ul class="w3-ul w3-card-4" style="width:50%">
+                <ul class="w3-ul w3-card-4 w3-pale-red" style="width:70%">
                     <li><b>Descrição: </b> ${tarefa.description}</li>
                     <li><b>Id da tarefa: </b> ${tarefa.id}</li>
                     <li><b>Data de Criação: </b> ${tarefa.dateCreation}</li>
@@ -246,12 +247,10 @@ function geraPagTarefa( tarefa, d ){
 
             </form>
             <form class="w3-container" action="/tarefas/${tarefa.id}/edit" method="POST">
-            <input class="w3-btn w3-blue-grey" type="submit" value="Editar Tarefa"/>
-            </form>
-
+            <input class="w3-btn w3-teal" type="submit" value="Editar Tarefa"/>
             </form>
             <form class="w3-container" action="/tarefas/${tarefa.id}/eliminar" method="POST">
-            <input class="w3-btn w3-blue-grey" type="submit" value="Eliminar Tarefa"/>
+            <input class="w3-btn w3-teal" type="submit" value="Eliminar Tarefa"/>
             </form>
 
             <footer class="w3-container w3-teal">
@@ -288,10 +287,10 @@ function geraFormTarefa( d ){
                 <input class="w3-input w3-border w3-light-grey" type="text" name="id">
 
                 <label class="w3-text-teal"><b>Data de Criação</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateCreation">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation">
 
                 <label class="w3-text-teal"><b>Prazo de Realização</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateDue">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateDue">
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
                   </br>
@@ -358,10 +357,10 @@ function formEditar(t,d){
                 <input class="w3-input w3-border w3-light-grey" type="text" name="id" value="${t.id}" readonly>
 
                 <label class="w3-text-teal"><b>Date de Criação</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateCreation" value="${t.dateCreation}">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation" value="${t.dateCreation}">
 
                 <label class="w3-text-teal"><b>Prazo de Realização</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="dateDue" value="${t.dateDue}">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateDue" value="${t.dateDue}">
 
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
@@ -388,7 +387,6 @@ function formEditar(t,d){
                 <br/>
           
                 <input class="w3-btn w3-blue-grey" type="submit" value="Registar"/>
-                <input class="w3-btn w3-blue-grey" type="reset" value="Limpar valores"/> 
             </form>
 
             <footer class="w3-container w3-teal">
