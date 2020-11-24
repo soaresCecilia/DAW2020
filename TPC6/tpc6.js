@@ -9,17 +9,12 @@ var {parse} = require('querystring')
 
 // Funçõess auxilidares
 // Retrieves task info from request body --------------------------------
-//VAi buscar o body
 function recuperaInfo(request, callback){
     if(request.headers['content-type'] == 'application/x-www-form-urlencoded'){
-        //let só é válido no contexto em que é declarado
         let body = ''
-        //on vai buscar um chunk de dados ao body do request e devolve o evento data
         request.on('data', bloco => {
             body += bloco.toString()
         })
-
-        //quando o on não consegue retirar nada do body devolve um end
         request.on('end', ()=>{
             console.log(body)
             callback(parse(body))
@@ -61,11 +56,40 @@ function geraPostConfirm( tarefa, d){
     `
 }
 
+//Página de Erro de Criação de Tarefa
+function pagError(d) {
+    return `
+    <html>
+    <head>
+        <title>Erro</title>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="favicon.png"/>
+        <link rel="stylesheet" href="w3.css"/>
+    </head>
+    <body>
+        <div class="w3-card-4">
+            <header class="w3-container w3-orange w3-center">
+                <h1 class="w3-text-blue">Erro na criação da tarefa</h1>
+            </header>
 
+            <div class="w3-container w3-grey">
+                <br/>
+                <h4>O id da Tarefa tem de ser composto por T seguido de um número</h4>
+                <br/>
+                <h4>A data de realização de tarefa não pode ser anterior à da sua criação</h4>
+                <br/>
+            </div>
 
+            <footer class="w3-container w3-orange">
+                <address class="w3-text-blue">Gerado em ${d} - [<a href="/">Voltar</a>]</address>
+            </footer>
+        </div>
+    </body>
+    </html>
+    `
+}
 
 // Template para a página com a lista de tarefas  ------------------
-//Recebe um array de tarefas e a data processada
 function geraPagPrincipal( tarefas, d){
   let pagHTML = `
     <html>
@@ -86,16 +110,16 @@ function geraPagPrincipal( tarefas, d){
                 <h4>Inserir Nova Tarefa</h4>
             </div>
                 <label class="w3-text-teal"><b>Descricao</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="description">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="description" required>
           
                 <label class="w3-text-teal"><b>Numero / Identificador</b></label>
                 <input class="w3-input w3-border w3-light-grey" type="text" name="id" required>
 
                 <label class="w3-text-teal"><b>Data de Criação</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateCreation" required>
 
                 <label class="w3-text-teal"><b>Prazo de Realização</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="date" name="dateDue">
+                <input class="w3-input w3-border w3-light-grey" type="date" name="dateDue" required>
 
                 <label class="w3-text-teal"><b>Tipo de Tarefa</b></label>
                   </br>
@@ -109,7 +133,7 @@ function geraPagPrincipal( tarefas, d){
                   </br>
 
                 <label class="w3-text-teal"><b>Responsável</b></label>
-                <input class="w3-input w3-border w3-light-grey" type="text" name="who">
+                <input class="w3-input w3-border w3-light-grey" type="text" name="who" required>
 
 
                 <label class="w3-text-teal"><b>Estado da Tarefa</b></label>
@@ -121,7 +145,6 @@ function geraPagPrincipal( tarefas, d){
                   <input type="radio" name="done" value="No" required>
                   <br/>
                   <br/>
-
           
                 <input class="w3-btn w3-blue-grey" type="submit" value="Registar"/>
                 <input class="w3-btn w3-blue-grey" type="reset" value="Limpar valores"/> 
@@ -145,9 +168,8 @@ function geraPagPrincipal( tarefas, d){
   `
     
         tarefas.forEach(t => {
-            var y;
-            if(y = (/No/.test(t.done))) {
-
+            if(((/No/).test(t.done)) && ((/T[0-9]+/).test(t.id))) { 
+                console.log("Tarefa id = " + t.id)
                 pagHTML +=  `
                 <tr>
                 <td><a href="/tarefas/${t.id}">${t.id}</a> </td>
@@ -158,7 +180,7 @@ function geraPagPrincipal( tarefas, d){
                 <td>${t.who}</td>
                 </tr>
                 `
-            }
+                }
         });
 
     pagHTML += `
@@ -183,8 +205,8 @@ function geraPagPrincipal( tarefas, d){
 `
 
         tarefas.forEach(t => {
-            console.log("O que tenho no t.done é " + t.done)
-            if((/Yes/).test(t.done)) {  
+            if(((/Yes/).test(t.done)) && ((/T[0-9]+/).test(t.id))) {  
+                console.log("Tarefa id = " + t.id)
                 pagHTML +=  `
                 <tr>
                 <td><a href="/tarefas/${t.id}">${t.id}</a> </td>
@@ -212,7 +234,7 @@ function geraPagPrincipal( tarefas, d){
 return pagHTML
 }
 
-// Template para a página de tarefa quando estamos-------------------------------------
+// Template para a página de cada tarefa-------------------------------------
 function geraPagTarefa( tarefa, d ){
         var x;
     if(/No/.test(tarefa.done)) {
@@ -262,7 +284,7 @@ function geraPagTarefa( tarefa, d ){
     `
 }
 
-// Template para o formulário de tarefa ------------------
+// Template para o formulário de tarefa usado somente para um GET /tarefas/registo  ------------------
 function geraFormTarefa( d ){
     return `
     <html>
@@ -383,7 +405,7 @@ function formEditar(t,d){
                 <input  type="radio" name="done" value="Yes">
                 <br/>
                   <label  class="w3-text-blue" for="done">Não Realizada</label>
-                <input  type="radio" name="done" value="No">
+                <input  type="radio" name="done" value="No" required>
                 <br/>
           
                 <input class="w3-btn w3-blue-grey" type="submit" value="Registar"/>
@@ -397,6 +419,7 @@ function formEditar(t,d){
     `
 }
 
+//Formulário de eliminar tarefa
 function formEliminar(t,d){
     return `
     <html>
@@ -510,19 +533,25 @@ var tarefaServer = http.createServer(function (req, res) {
         case "POST":
             if(req.url=='/tarefas') {
                     recuperaInfo(req, resultado => {
-                    console.log('POST de tarefa:' + JSON.stringify(resultado))
-                    axios.post('http://localhost:3000/tarefas', resultado)
-                        .then(resp => {
+                        if(!(/T[0-9]+/.test(resultado.id)) || resultado.dateDue < resultado.dateCreation) {
                             res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                            res.write(geraPostConfirm( resp.data, d))
+                            res.write(pagError(d))
                             res.end()
-                        })
-                        .catch(erro => {
-                            res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                            res.write('<p>Erro no POST: ' + erro + '</p>')
-                            res.write('<p><a href="/">Voltar</a></p>')
-                            res.end()
-                        })
+                        } else {
+                            console.log('POST de tarefa:' + JSON.stringify(resultado))
+                            axios.post('http://localhost:3000/tarefas', resultado)
+                                .then(resp => {
+                                    res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                                    res.write(geraPostConfirm( resp.data, d))
+                                    res.end()
+                                 })
+                                .catch(erro => {
+                                    res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                                    res.write('<p>Erro no POST: ' + erro + '</p>')
+                                    res.write('<p><a href="/">Voltar</a></p>')
+                                    res.end()
+                                })
+                            }
                     })
             }
             else if(/\/tarefas\/T[0-9]+\/eliminar$/.test(req.url)) {
