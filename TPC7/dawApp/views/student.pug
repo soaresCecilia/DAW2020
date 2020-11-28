@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    .w3-card-4
+      header.w3-container.w3-teal
+        h2.w3-left Aluno #{Student.nome}
+    if Student != null
+        .w3-container 
+            ul
+                li
+                    Numero= Student.numero
+                
+                li
+                    
+                    Nome= Student.nome
+                
+                li
+                    Git= Student.git
+ 
+
+                    .w3-container
+                        table.w3-table-all
+                            tr 
+                            th TPC1
+                            th TPC2
+                            th TPC3
+                            th TPC4 
+                            th TPC5
+                            th TPC6
+                            th TPC7
+                            th TPC8
+
+                            tr
+                            each i in Student.tpc
+                                
+                                    td= i
+      
+        form(method="PUT" action="/students/editar/:id")
+                .w3-container.w3-teal         
+                    input(type="submit" value="Editar")
+
+        form(method="DELETE" action="/students/eliminar/:id")
+                .w3-container.w3-teal         
+                    input(type="submit" value="Eliminar")
+        
+
+
+
+    footer.w3-container.w3-teal
+        address Gerado por dawApp :: 2020-Nov, cs
+
+  
+
+    
+
+        
