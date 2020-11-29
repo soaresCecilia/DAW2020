@@ -15,7 +15,7 @@ block content
                     td 
                       label Numero
                     td 
-                      input(type="text" name="numero" value=Student.numero)
+                      input(type="text" name="numero" value=Student.numero readonly)
                   tr
                     td
                       label Nome
@@ -25,12 +25,12 @@ block content
                     td
                       label git
                     td
-                      input(type="text" name="git" value=Student.git)
+                      input(type="url" name="git" value=Student.git)
                   tr
                     td
                       label TPCs
                     td
-                      input(type="text" name="tpc" value=Student.git)
+                      input(type="text" name="tpc" value=(Student.tpc).toString())
                   tr
                     td   
                       input(type="submit" value="Alterar Aluno")

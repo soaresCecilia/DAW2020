@@ -47,12 +47,12 @@ router.get('/students/editar/:idStudent', function(req, res) {
 
 
 //post insere
-router.post('/students', function(req, res){
+router.post('/students', function(req, res) {
   Student.insert(req.body)
-  .then(data => res.render('ok', { Student: data }))
-  .catch(err => res.render('error', {error: err}))
-  ;
-})
+    .then(data => res.render('ok', { Student: data }))
+    .catch(err => res.render('error', {error: err}))
+    ;
+});
 
 
 //put altera
@@ -61,7 +61,6 @@ router.post('/students/alterar/:idStudent', function(req, res){
   .then(data => res.render('ok', { ok: data }))
   .catch(err => res.render('error', {error: err}))
   ;
-})
-
+});
 
 module.exports = router;

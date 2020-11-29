@@ -16,10 +16,26 @@ module.exports.lookUp = id => {
         .exec()
 }
 
-module.exports.insert = student => {
-    var newStudent = new Student(student)
-    return newStudent.save()
+module.exports.insert = fields => {
+    var res = fields.tpc.split(",");
+    var tpcNumber = [];
+
+    for(var i= 0; i < 8; i++){
+        tpcNumber.push(parseInt(res[i]))
+    }
+
+    var newStudent = new Student({ 
+        numero: fields['numero'],
+        nome: fields['nome'],
+        git: fields['git'],
+        tpc: tpcNumber
+    })
+    
+    return newStudent
+        .save()
 }
+
+
 
 module.exports.delete = id => {
     return Student
@@ -28,14 +44,21 @@ module.exports.delete = id => {
 }
 
 
-module.exports.update = (id, campos) =>{
+module.exports.update = (id, fields) =>{
+    var res = fields.tpc.split(",");
+    var tpcNumber = [];
+
+    for(var i= 0; i < 8; i++){
+        tpcNumber.push(parseInt(res[i]))
+    }
+
     return Student
         .findOneAndUpdate({numero: id}, {
             $set: {
-                numero: campos['numero'],
-                nome: campos['nome'],
-                git: campos['git'],
-                tpc: campos['tpc']       
+                numero: fields['numero'],
+                nome: fields['nome'],
+                git: fields['git'],
+                tpc: tpcNumber      
             }
         })
         .exec()
