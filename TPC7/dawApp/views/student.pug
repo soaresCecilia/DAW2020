@@ -35,11 +35,12 @@ block content
                                 
                                     td= i
       
-        form(method="PUT" action="/students/editar/:id")
+        form(method="GET" action="/students/editar/" + Student.numero)
                 .w3-container.w3-teal         
                     input(type="submit" value="Editar")
 
-        form(method="DELETE" action="/students/eliminar/:id")
+        
+        form(method="POST" action="/students/eliminar/" + Student.numero)
                 .w3-container.w3-teal         
                     input(type="submit" value="Eliminar")
         

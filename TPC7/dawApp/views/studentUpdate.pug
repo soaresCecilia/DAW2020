@@ -3,10 +3,10 @@ extends layout
 block content
     .w3-card-4
       header.w3-container.w3-teal
-        h2.w3-left Aluno
-    
-      if Student != null
-        form(method="PUT" action="students/:id")
+        h2.w3-left Aluno #{Student.nome}
+      
+    if Student != null
+        form(method="POST" action="/students/alterar/" + Student.numero)
           .w3-container.w3-teal
             h2 Actualizar Aluno
 
@@ -15,31 +15,29 @@ block content
                     td 
                       label Numero
                     td 
-                      input(type="text" name="numero" value="${Student.numero}")
+                      input(type="text" name="numero" value=Student.numero)
                   tr
                     td
                       label Nome
                     td
-                      input(type="text" name="nome" value="${Student.nome}")
+                      input(type="text" name="nome" value=Student.nome)
                   tr
                     td
                       label git
                     td
-                      input(type="text" name="git" value="${Student.git}")
+                      input(type="text" name="git" value=Student.git)
                   tr
                     td
                       label TPCs
                     td
-                      input(type="text" name="tpc" value="${Student.git}")
+                      input(type="text" name="tpc" value=Student.git)
                   tr
                     td   
-                      input(type="submit" value="Registar")
-    
-      else
-        .w3-container
-          p There are no students...
-      
-                    
+                      input(type="submit" value="Alterar Aluno")
+
+    else 
+       p  Aluno não Existe
+           
     footer.w3-container.w3-teal
         address Gerado por dawApp :: 2020-Nov, cs
 

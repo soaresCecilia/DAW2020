@@ -23,7 +23,7 @@ module.exports.insert = student => {
 
 module.exports.delete = id => {
     return Student
-        .findByIdAndRemove({numero: id})
+        .findOneAndDelete({numero: id})
         .exec()
 }
 
