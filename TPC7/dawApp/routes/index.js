@@ -46,13 +46,29 @@ router.get('/students/editar/:idStudent', function(req, res) {
 });
 
 
-//post insere
-router.post('/students', function(req, res) {
+//post insere se o id não funcionar
+router.post('/students', function(req, res, next) {
+  console.log("AQUI -> " + req.body.numero);
+
+  Student.consult(req.body.numero, function(err, student) {
+    if (err) {
+      next(err)
+    }
+    else if (student) {
+      res.render('studentExists')
+    }
+    else {
+      next()
+    }
+  })
+}, function(req, res) {
   Student.insert(req.body)
     .then(data => res.render('ok', { Student: data }))
     .catch(err => res.render('error', {error: err}))
     ;
 });
+
+
 
 
 //put altera
@@ -62,5 +78,6 @@ router.post('/students/alterar/:idStudent', function(req, res){
   .catch(err => res.render('error', {error: err}))
   ;
 });
+
 
 module.exports = router;

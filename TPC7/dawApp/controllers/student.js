@@ -63,3 +63,10 @@ module.exports.update = (id, fields) =>{
         })
         .exec()
 }
+
+module.exports.consult = (id, callback) => {
+       Student
+        .findOne({numero: id})
+        .exec()
+        .then(data => callback(null, data))
+}
