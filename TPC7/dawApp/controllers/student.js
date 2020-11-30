@@ -52,7 +52,7 @@ module.exports.update = (id, fields) =>{
     var tpcNumber = [];
 
     for(var i= 0; i < 8; i++){
-        if(res[i] == null)
+        if(res[i] == null || res[i] != '1' || res[i] != '0')
             tpcNumber.push(0)
         else 
             tpcNumber.push(parseInt(res[i]))
