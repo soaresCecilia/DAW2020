@@ -52,7 +52,7 @@ router.post('/students', function(req, res, next) {
 
   Student.consult(req.body.numero, function(err, student) {
     if (err) {
-      next(err)
+      res.render('error', {error: err})
     }
     else if (student) {
       res.render('studentExists')

@@ -21,7 +21,10 @@ module.exports.insert = fields => {
     var tpcNumber = [];
 
     for(var i= 0; i < 8; i++){
-        tpcNumber.push(parseInt(res[i]))
+        if(res[i] == null)
+            tpcNumber.push(0)
+        else 
+            tpcNumber.push(parseInt(res[i]))
     }
 
     var newStudent = new Student({ 
@@ -49,9 +52,12 @@ module.exports.update = (id, fields) =>{
     var tpcNumber = [];
 
     for(var i= 0; i < 8; i++){
-        tpcNumber.push(parseInt(res[i]))
+        if(res[i] == null)
+            tpcNumber.push(0)
+        else 
+            tpcNumber.push(parseInt(res[i]))
     }
-
+    
     return Student
         .findOneAndUpdate({numero: id}, {
             $set: {
