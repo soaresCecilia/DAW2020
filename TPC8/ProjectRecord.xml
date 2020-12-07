@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/ceciliasoares/Documents/Universidade/4Ano/1semestre/DAW/DAW2020/TPC8/ProjectRecord.xsd">
+    <meta>
+        <key>Project Record</key>
+        <title>Upload Multiple Files</title>
+        <bdate>7 de Dezembro</bdate>
+        <edate>7 de Dezembro</edate>
+        <supervisor url="http://www.di.uminho.pt/~jcr"/>
+        
+    </meta>
+    <team>
+        <member id="a34900">
+            <name>Cecília da Conceição de Oliveira Soares</name>
+            <email>cecilia.oliveira.soares@gmail.com</email>
+            <link url="https://github.com/soaresCecilia"/>
+        </member>
+    </team>
+    <abstract>
+        <p>O presente trabalho trabalho de casa tinha como objectivo executar um <i>upload</i> de múltiplos ficheiros.</p>
+        <p>Para isso utilizamos a função <i>upload.array<i>, do módulo <i>multer</i>, que nos permite guardar em <i>req.files</i>
+        os respectivos ficheiros.</p>
+        <p> Além disso, no nosso formulário, onde carregamos os ficheiros a serem exportados, utilizamos a opção de multiple para 
+        podermos seleccionar vários ficheiros da mesma directoria. <p>       
+    </abstract>
+    <deliverables>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/servertpc.js"/>
+
+        
+    </deliverables>
+</pr>
