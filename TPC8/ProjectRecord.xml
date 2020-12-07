@@ -17,15 +17,16 @@
         </member>
     </team>
     <abstract>
-        <p>O presente trabalho trabalho de casa tinha como objectivo executar um <i>upload</i> de múltiplos ficheiros.</p>
+        <p>O presente trabalho trabalho de casa tinha como objectivo executar o <i>upload</i> de múltiplos ficheiros.</p>
         <p>Para isso utilizamos a função <i>upload.array<i>, do módulo <i>multer</i>, que nos permite guardar em <i>req.files</i>
         os respectivos ficheiros.</p>
-        <p> Além disso, no nosso formulário, onde carregamos os ficheiros a serem exportados, utilizamos a opção de multiple para 
-        podermos seleccionar vários ficheiros da mesma directoria. <p>       
+        <p> Além disso, no ficheiro <i>html-templates.js</i>, onde temos o nosso formulário, quando carregamos os ficheiros a 
+        serem exportados, utilizamos a opção de multiple para podermos seleccionar vários ficheiros da mesma directoria. <p>       
     </abstract>
     <deliverables>
         <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/servertpc.js"/>
-
-        
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/dbFiles.json"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/html-templates.js"/>
+        <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/public/imagens.js"/>      
     </deliverables>
 </pr>

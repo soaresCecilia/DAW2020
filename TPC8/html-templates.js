@@ -1,5 +1,4 @@
 
-exports.geraPostConfirm = geraPostConfirm
 exports.fileList = fileList
 exports.fileForm = fileForm
 
@@ -97,35 +96,6 @@ function fileForm( d ){
                 <address>Gerado por galuno::PRI2020 em ${d}</address>
             </footer>
         </body>
-    </html>
-    `
-}
-
-// POST Confirmation HTML Page Template -------------------------------------
-function geraPostConfirm( aluno, d){
-    return `
-    <html>
-    <head>
-        <title>POST receipt: ${aluno.id}</title>
-        <meta charset="utf-8"/>
-        <link rel="icon" href="favicon.png"/>
-        <link rel="stylesheet" href="w3.css"/>
-    </head>
-    <body>
-        <div class="w3-card-4">
-            <header class="w3-container w3-teal">
-                <h1>Aluno ${aluno.id} inserido</h1>
-            </header>
-
-            <div class="w3-container">
-                <p><a href="/alunos/${aluno.id}">Aceda aqui Ã  sua pÃ¡gina."</a></p>
-            </div>
-
-            <footer class="w3-container w3-teal">
-                <address>Gerado por galuno::PRI2020 em ${d} - [<a href="/">Voltar</a>]</address>
-            </footer>
-        </div>
-    </body>
     </html>
     `
 }
