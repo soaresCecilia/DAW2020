@@ -18,10 +18,11 @@
     </team>
     <abstract>
         <p>O presente trabalho trabalho de casa tinha como objectivo executar o <i>upload</i> de múltiplos ficheiros.</p>
-        <p>Para isso utilizamos a função <i>upload.array<i>, do módulo <i>multer</i>, que nos permite guardar em <i>req.files</i>
-        os respectivos ficheiros.</p>
-        <p> Além disso, no ficheiro <i>html-templates.js</i>, onde temos o nosso formulário, quando carregamos os ficheiros a 
-        serem exportados, utilizamos a opção de multiple para podermos seleccionar vários ficheiros da mesma directoria. <p>       
+        <p>Para isso criamos a função <i>addFile<i>, que é chamada sempre que é pressionado o botão <b>Add File</p> e que 
+        acrescenta ao formulário a parte de descrição do ficheiro e do carregamento do mesmo e inserimos essa informação 
+        como o último filho do elemento em causa.<p>
+        <p> Assim, é possível o utilizador escolha ficheiros de diferentes directorias, coisa que não é possível utilizando
+        a opção <i>multiple<i> no formulário html quanod o <i>input</i> é um <i>file</i>.<p>       
     </abstract>
     <deliverables>
         <link url="https://github.com/soaresCecilia/DAW2020/blob/main/TPC8/servertpc.js"/>

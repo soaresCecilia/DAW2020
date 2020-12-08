@@ -44,43 +44,45 @@ app.get('/files/upload', function(req,res){
 
 
 app.post('/files', upload.array('myFile'), function(req, res){
-    var i = 0;
+    var pos = 0;
 
-    for(i = 0; i < req.files.length; i++) {
+    req.files.forEach(element => {
 
         console.dir("Tamanho do req.files: " + req.files.length)
-        let oldPath = __dirname + '/' + req.files[i].path
-        let newPath = __dirname + '/public/fileStore/' + req.files[i].originalname
+        let oldPath = __dirname + '/' + element.path
+        let newPath = __dirname + '/public/fileStore/' + element.originalname
 
-        var request = req.files[i]
-      
         fs.rename(oldPath, newPath, function(err) {
             if(err) throw err
 
+            else {
+
+                //actualizar a BD
+                var files = jsonfile.readFileSync('./dbFiles.json')
+                var d = new Date().toISOString().substr(0,16)
+                //registo da meta-info
+                files.push(
+                    {
+                        date: d,
+                        name: element.originalname,
+                        size: element.size,
+                        mimetype: element.mimetype,
+                        desc: req.body.desc[pos]
+                    }
+                )
+                jsonfile.writeFileSync('./dbFiles.json', files)
+                pos++
+            }
+
         })
 
-            
-                
-        //actualizar a BD
-        var files = jsonfile.readFileSync('./dbFiles.json')
-        var d = new Date().toISOString().substr(0,16)
-        //registo da meta-info
-        files.push(
-            {
-                date: d,
-                name: request.originalname,
-                size: request.size,
-                mimetype: request.mimetype,
-                desc: req.body.desc
-                }
-            )
-        jsonfile.writeFileSync('./dbFiles.json', files)
-    }
-        
+    })
+
     //redirecciona para a página principal
     res.redirect('/')
 
-})
+    })
+
 
 
 
